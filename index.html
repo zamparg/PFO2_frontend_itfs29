@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PFO 02 — Portada</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cyan: #00f5ff;
+      --purple: #bf00ff;
+      --green: #00ff88;
+      --dark: #030712;
+      --card: rgba(255, 255, 255, 0.03);
+      --border: rgba(0, 245, 255, 0.18);
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+      background: var(--dark);
+      font-family: 'Share Tech Mono', monospace;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: linear-gradient(rgba(0, 245, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 245, 255, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      animation: gridDrift 20s linear infinite;
+    }
+
+    @keyframes gridDrift {
+      to {
+        background-position: 48px 48px;
+      }
+    }
+
+    .orb {
+      position: fixed;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    .orb-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--purple);
+      top: -200px;
+      left: -200px;
+      animation: float1 12s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: var(--cyan);
+      bottom: -150px;
+      right: -150px;
+      animation: float2 14s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(60px, 40px)
+      }
+    }
+
+    @keyframes float2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(-40px, -60px)
+      }
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      gap: 48px;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--cyan);
+      border: 1px solid var(--cyan);
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      animation: blink 3s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.5
+      }
+    }
+
+    h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 60%, var(--green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.12em;
+    }
+
+    /* ── Prompt card con scroll acotado ── */
+    .prompt-card {
+      width: 100%;
+      max-width: 780px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      position: relative;
+      backdrop-filter: blur(12px);
+    }
+
+    .prompt-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 12px;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--cyan), transparent, var(--purple));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* fade-out en la parte inferior para indicar scroll */
+    .prompt-card::after {
+      content: '';
+      position: absolute;
+      bottom: 28px;
+      left: 32px;
+      right: 32px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, #030712cc);
+      border-radius: 0 0 10px 10px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .prompt-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .prompt-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    .prompt-scroll {
+      max-height: 220px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    /* scrollbar personalizado */
+    .prompt-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .prompt-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .prompt-scroll::-webkit-scrollbar-thumb {
+      background: var(--cyan);
+      border-radius: 2px;
+      opacity: 0.5;
+    }
+
+    .prompt-scroll::-webkit-scrollbar-thumb:hover {
+      background: var(--purple);
+    }
+
+    .prompt-text {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.75);
+      white-space: pre-wrap;
+    }
+
+    .prompt-text span.hl {
+      color: var(--cyan);
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      width: 100%;
+      max-width: 780px;
+    }
+
+    .nav-card {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+    }
+
+    .nav-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .nav-card:hover::after {
+      opacity: 1;
+    }
+
+    .nav-card.claude:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 32px rgba(0, 245, 255, 0.25);
+    }
+
+    .nav-card.gpt:hover {
+      border-color: var(--purple);
+      box-shadow: 0 0 32px rgba(191, 0, 255, 0.25);
+    }
+
+    .nav-card.claude::after {
+      background: radial-gradient(circle at 50% 0%, rgba(0, 245, 255, 0.08), transparent 70%);
+    }
+
+    .nav-card.gpt::after {
+      background: radial-gradient(circle at 50% 0%, rgba(191, 0, 255, 0.08), transparent 70%);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+
+    .card-num {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    .claude .card-num {
+      color: var(--cyan);
+    }
+
+    .gpt .card-num {
+      color: var(--purple);
+    }
+
+    .card-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .card-meta {
+      font-size: 0.73rem;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.6;
+    }
+
+    .claude .card-meta em {
+      color: var(--cyan);
+      font-style: normal;
+    }
+
+    .gpt .card-meta em {
+      color: var(--purple);
+      font-style: normal;
+    }
+
+    .card-arrow {
+      margin-top: auto;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .claude .card-arrow {
+      color: var(--cyan);
+    }
+
+    .gpt .card-arrow {
+      color: var(--purple);
+    }
+
+    .card-arrow::after {
+      content: '→';
+      font-size: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .nav-card:hover .card-arrow::after {
+      transform: translateX(4px);
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px);
+      pointer-events: none;
+    }
+
+    footer {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="wrapper">
+
+    <header>
+      <div class="badge">▸ PFO 02 — Frontend | ITFS 29</div>
+      <h1>AI Landing Lab</h1>
+      <p class="subtitle">Comparativa de Agentes Generativos · 2026</p>
+    </header>
+
+    <div class="prompt-card">
+      <div class="prompt-label">01 — Prompt utilizado</div>
+      <div class="prompt-scroll">
+        <pre class="prompt-text"><span class="hl">## Rol</span>
+Sos un desarrollador front-end experto en landing pages modernas y visualmente
+impactantes. Escribís HTML5 semántico, CSS3 y JavaScript vanilla de calidad
+productiva: responsive, accesible (WCAG AA) y performante. No usás frameworks
+externos salvo que se indique explícitamente.
+
+<span class="hl">## Contexto</span>
+Creá una landing page completa en un único archivo HTML para <span class="hl">"Verda Studio"</span>,
+un estudio de arquitectura sustentable que diseña espacios residenciales y
+comerciales eco-friendly. Identidad visual: elegante, moderna, tonos tierra
+(verde oscuro #2D5016, beige cálido #F5F0E8, terracota #C4714A, blanco roto #FAFAF7).
+Tipografía: Google Fonts — "Playfair Display" para títulos, "Inter" para cuerpo.
+
+<span class="hl">## Tarea</span>
+Construí la landing completa con las siguientes 7 secciones en orden:
+
+<span class="hl">### 1. Header / Navegación</span>
+Navbar sticky, logo "VERDA" en Playfair Display, links de navegación,
+botón CTA "Consulta Gratis" (terracota), menú hamburguesa funcional en mobile,
+sombra suave al hacer scroll.
+
+<span class="hl">### 2. Hero</span>
+Alto 100vh, fondo degradado CSS en tonos verde oscuro (sin imágenes externas),
+título principal, subtítulo, dos CTAs (primario relleno y secundario outlined),
+formas geométricas animadas en el fondo, flecha de scroll animada.
+
+<span class="hl">### 3. Sobre Nosotros</span>
+Dos columnas (texto izq. / visual der.), filosofía del estudio, 3 contadores
+animados al hacer scroll: +120 Proyectos · 15 años · 40% menos huella de carbono.
+Ilustración de edificio construida solo con CSS (divs, bordes, gradientes).
+
+<span class="hl">### 4. Servicios</span>
+Grilla de 6 cards: Diseño Residencial, Arquitectura Comercial, Consultoría
+Sustentable, Certificación LEED, Paisajismo, BIM y Tecnología.
+Hover: elevación con sombra + borde superior terracota.
+
+<span class="hl">### 5. Testimonios</span>
+Carrusel JS sin librerías, 4 testimonios, flechas prev/next + puntos indicadores,
+avance automático cada 5 segundos, pausa al hover, estrellas CSS en terracota.
+
+<span class="hl">### 6. Formulario de Contacto</span>
+Dos columnas: info de contacto + mapa placeholder CSS a la izquierda, formulario
+a la derecha (Nombre, Email, Teléfono, Tipo de proyecto, Mensaje).
+Validación client-side con feedback visual + mensaje de éxito al enviar.
+
+<span class="hl">### 7. Footer</span>
+Fondo verde oscuro, 4 columnas, íconos de redes sociales en Unicode,
+barra de copyright con política de privacidad y términos.
+
+<span class="hl">## Requisitos técnicos</span>
+- Un único archivo: todo el HTML, CSS y JS dentro del mismo index.html
+- Diseño mobile-first, breakpoints en 768px y 1024px
+- Sin frameworks CSS externos
+- Google Fonts solo vía etiqueta link
+- Respetar prefers-reduced-motion
+- HTML5 semántico con atributos ARIA en elementos interactivos
+- Copy en español real, sin lorem ipsum
+- Paleta de colores consistente en todas las secciones
+
+<span class="hl">## Formato de salida</span>
+Devolvé únicamente el contenido completo del archivo index.html.
+Sin explicaciones antes ni después del código.
+No truncar — implementación completa obligatoria.</pre>
+      </div>
+    </div>
+
+    <div class="nav-grid">
+      <a href="claude.html" class="nav-card claude">
+        <span class="card-icon">◈</span>
+        <span class="card-num">Agente 01</span>
+        <span class="card-title">Claude Sonnet 4.6</span>
+        <span class="card-meta">Agente: <em>Claude Code</em><br>Modelo: <em>claude-sonnet-4-6</em><br>Proveedor:
+          <em>Anthropic</em></span>
+        <span class="card-arrow">Ver landing</span>
+      </a>
+      <a href="gpt.html" class="nav-card gpt">
+        <span class="card-icon">◇</span>
+        <span class="card-num">Agente 02</span>
+        <span class="card-title">GPT 5.3 - Codex</span>
+        <span class="card-meta">Agente: <em>Copilot</em><br>Modelo: <em>GPT-5.3 - Codex</em><br>Proveedor:
+          <em>OpenAI</em></span>
+        <span class="card-arrow">Ver landing</span>
+      </a>
+    </div>
+
+    <footer>TECNICATURA EN PROGRAMACIÓN · FRONTEND · 2026 · zamparg@hotmail.com</footer>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Verda Studio: arquitectura sustentable para espacios residenciales y comerciales eco-friendly." />
+  <title>Verda Studio | Arquitectura Sustentable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-dark: #2D5016;
+      --green-mid: #3f6d24;
+      --beige: #F5F0E8;
+      --terracotta: #C4714A;
+      --off-white: #FAFAF7;
+      --text-dark: #1f2b18;
+      --text-light: #f2f5ed;
+      --muted: #6b7561;
+      --shadow-soft: 0 10px 30px rgba(24, 41, 15, 0.12);
+      --shadow-card: 0 16px 28px rgba(35, 52, 22, 0.14);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 26px;
+      --container: 1180px;
+      --transition: 220ms ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--off-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img, svg {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--container));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 4.5rem 0;
+    }
+
+    .section-title {
+      margin: 0 0 1rem;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--green-dark);
+      letter-spacing: 0.2px;
+    }
+
+    .section-subtitle {
+      margin: 0 0 2rem;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 0.78rem 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition), color var(--transition), border-color var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn:focus-visible,
+    .nav-links a:focus-visible,
+    .icon-link:focus-visible,
+    .slider-btn:focus-visible,
+    .dot-btn:focus-visible,
+    .menu-toggle:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--terracotta), white 25%);
+      outline-offset: 3px;
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      color: var(--off-white);
+      box-shadow: 0 8px 18px rgba(196, 113, 74, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      background: #b76440;
+    }
+
+    .btn-outline {
+      border-color: rgba(250, 250, 247, 0.75);
+      color: var(--off-white);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--off-white);
+      background: rgba(250, 250, 247, 0.08);
+    }
+
+    .btn-ghost {
+      border-color: rgba(45, 80, 22, 0.3);
+      color: var(--green-dark);
+      background: transparent;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--green-dark);
+      background: rgba(45, 80, 22, 0.07);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+      background: var(--terracotta);
+      color: var(--off-white);
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(250, 250, 247, 0.94);
+      backdrop-filter: blur(10px);
+      transition: box-shadow var(--transition), padding var(--transition);
+      border-bottom: 1px solid rgba(45, 80, 22, 0.08);
+    }
+
+    .site-header.scrolled {
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      min-height: 72px;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      color: var(--green-dark);
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .menu-toggle {
+      border: 1px solid rgba(45, 80, 22, 0.22);
+      background: transparent;
+      color: var(--green-dark);
+      border-radius: 10px;
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      position: relative;
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 3px;
+      transition: transform var(--transition), opacity var(--transition);
+      content: "";
+    }
+
+    .menu-toggle span::before {
+      position: absolute;
+      top: -6px;
+      left: 0;
+      content: "";
+    }
+
+    .menu-toggle span::after {
+      position: absolute;
+      top: 6px;
+      left: 0;
+      content: "";
+    }
+
+    .menu-toggle[aria-expanded="true"] span {
+      background: transparent;
+    }
+
+    .menu-toggle[aria-expanded="true"] span::before {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] span::after {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .nav-panel {
+      position: absolute;
+      top: 72px;
+      left: 1rem;
+      right: 1rem;
+      background: var(--off-white);
+      border: 1px solid rgba(45, 80, 22, 0.1);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      padding: 1rem;
+      display: grid;
+      gap: 1rem;
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .nav-panel.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.6rem 0.4rem;
+      color: var(--green-dark);
+      font-weight: 500;
+      border-radius: 8px;
+    }
+
+    .nav-links a:hover {
+      background: rgba(45, 80, 22, 0.08);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding-top: 6rem;
+      overflow: clip;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(196, 113, 74, 0.22), transparent 42%),
+        radial-gradient(circle at 80% 78%, rgba(245, 240, 232, 0.14), transparent 36%),
+        linear-gradient(140deg, #1f3811 0%, var(--green-dark) 45%, #486f2b 100%);
+      color: var(--text-light);
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 1.6rem;
+      position: relative;
+      z-index: 2;
+      padding-bottom: 4rem;
+    }
+
+    .hero-eyebrow {
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 0.79rem;
+      letter-spacing: 1.7px;
+      font-weight: 600;
+      color: rgba(250, 250, 247, 0.86);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      line-height: 1.04;
+      font-size: clamp(2rem, 6.4vw, 4.4rem);
+      max-width: 14ch;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 58ch;
+      color: rgba(250, 250, 247, 0.9);
+      font-size: clamp(1rem, 1.5vw, 1.13rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .shape {
+      position: absolute;
+      border: 1px solid rgba(250, 250, 247, 0.18);
+      background: rgba(250, 250, 247, 0.05);
+      backdrop-filter: blur(2px);
+      z-index: 1;
+    }
+
+    .shape.one {
+      width: 170px;
+      height: 170px;
+      right: -28px;
+      top: 16%;
+      border-radius: 30px;
+      animation: floatA 10s ease-in-out infinite;
+    }
+
+    .shape.two {
+      width: 120px;
+      height: 120px;
+      left: 12%;
+      bottom: 16%;
+      border-radius: 50%;
+      animation: floatB 9s ease-in-out infinite;
+    }
+
+    .shape.three {
+      width: 210px;
+      height: 86px;
+      left: 56%;
+      bottom: 10%;
+      border-radius: 999px;
+      transform: rotate(-11deg);
+      animation: floatC 12s ease-in-out infinite;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 1.2rem;
+      transform: translateX(-50%);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      color: rgba(250, 250, 247, 0.85);
+      font-size: 0.8rem;
+      letter-spacing: 0.8px;
+      z-index: 2;
+    }
+
+    .scroll-arrow {
+      width: 18px;
+      height: 18px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg);
+      animation: bounce 1.6s ease-in-out infinite;
+    }
+
+    .about {
+      background: var(--beige);
+    }
+
+    .about-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .about p {
+      margin: 0 0 1rem;
+      color: #42513a;
+    }
+
+    .counters {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 1.4rem;
+    }
+
+    .counter-card {
+      background: var(--off-white);
+      border: 1px solid rgba(45, 80, 22, 0.12);
+      border-radius: 14px;
+      padding: 0.95rem 1rem;
+    }
+
+    .counter-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      line-height: 1.1;
+    }
+
+    .counter-label {
+      margin: 0.2rem 0 0;
+      color: #5a6554;
+      font-size: 0.94rem;
+    }
+
+    .visual-wrap {
+      background: linear-gradient(165deg, #f7f3eb 0%, #ece5d8 100%);
+      border: 1px solid rgba(45, 80, 22, 0.14);
+      border-radius: var(--radius-lg);
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .building-scene {
+      position: relative;
+      width: min(320px, 90%);
+      height: 250px;
+    }
+
+    .building {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      height: 165px;
+      background: linear-gradient(to bottom, #faf7f0, #efe6d6);
+      border: 2px solid rgba(45, 80, 22, 0.16);
+      border-radius: 10px;
+      box-shadow: 0 14px 22px rgba(52, 72, 34, 0.14);
+    }
+
+    .building::before {
+      content: "";
+      position: absolute;
+      top: -36px;
+      left: -10px;
+      width: 240px;
+      height: 42px;
+      background: linear-gradient(to right, #d3c2a8, #cab497);
+      border: 2px solid rgba(45, 80, 22, 0.14);
+      border-bottom: none;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .window-grid {
+      position: absolute;
+      inset: 18px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .window {
+      border-radius: 6px;
+      background: linear-gradient(to bottom, #9cb89a 0%, #6e9564 55%, #4c6f42 100%);
+      border: 1px solid rgba(36, 57, 22, 0.2);
+      box-shadow: inset 0 0 0 1px rgba(250, 250, 247, 0.25);
+    }
+
+    .door {
+      position: absolute;
+      width: 40px;
+      height: 65px;
+      left: calc(50% - 20px);
+      bottom: 0;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(to bottom, #9e5f40, #7d4228);
+      border: 1px solid rgba(45, 27, 16, 0.3);
+    }
+
+    .tree {
+      position: absolute;
+      bottom: 0;
+      width: 62px;
+      height: 116px;
+    }
+
+    .tree.left {
+      left: 14px;
+    }
+
+    .tree.right {
+      right: 14px;
+    }
+
+    .tree::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 28px;
+      width: 7px;
+      height: 42px;
+      background: #7f5638;
+      border-radius: 999px;
+    }
+
+    .tree::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 62px;
+      height: 62px;
+      background: radial-gradient(circle at 35% 35%, #9cc686 0%, #5d8a45 65%, #4e7a38 100%);
+      border-radius: 50%;
+      border: 1px solid rgba(45, 80, 22, 0.22);
+    }
+
+    .services-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .service-card {
+      background: var(--off-white);
+      border: 1px solid rgba(45, 80, 22, 0.12);
+      border-top: 4px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: 0 8px 16px rgba(32, 52, 20, 0.07);
+      transition: transform var(--transition), box-shadow var(--transition), border-top-color var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card);
+      border-top-color: var(--terracotta);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(45, 80, 22, 0.1);
+      color: var(--green-dark);
+      display: grid;
+      place-items: center;
+      font-size: 1.15rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .service-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+      color: var(--green-dark);
+    }
+
+    .service-card p {
+      margin: 0;
+      color: #576550;
+      font-size: 0.95rem;
+    }
+
+    .testimonials {
+      background: linear-gradient(180deg, #f7f3eb 0%, #efe8db 100%);
+    }
+
+    .slider {
+      position: relative;
+      margin-top: 1rem;
+      border: 1px solid rgba(45, 80, 22, 0.14);
+      background: var(--off-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 420ms ease;
+      will-change: transform;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      padding: 1.6rem 1.1rem 2.6rem;
+      min-height: 300px;
+      display: grid;
+      align-content: center;
+      gap: 1rem;
+    }
+
+    .stars {
+      color: var(--terracotta);
+      letter-spacing: 2px;
+      font-size: 1rem;
+      user-select: none;
+    }
+
+    .slide blockquote {
+      margin: 0;
+      font-size: clamp(1.02rem, 2vw, 1.25rem);
+      line-height: 1.6;
+      color: #2f3b2a;
+    }
+
+    .slide cite {
+      font-style: normal;
+      color: #5d6758;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .slider-controls {
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-inline: 0.8rem;
+      gap: 1rem;
+    }
+
+    .slider-btn {
+      border: 1px solid rgba(45, 80, 22, 0.2);
+      background: rgba(250, 250, 247, 0.96);
+      color: var(--green-dark);
+      border-radius: 999px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background-color var(--transition), transform var(--transition);
+    }
+
+    .slider-btn:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    .dots {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-inline: auto;
+    }
+
+    .dot-btn {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(45, 80, 22, 0.25);
+      cursor: pointer;
+      transition: width var(--transition), background-color var(--transition);
+    }
+
+    .dot-btn[aria-current="true"] {
+      width: 26px;
+      background: var(--terracotta);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .contact-card,
+    .form-card {
+      background: var(--off-white);
+      border: 1px solid rgba(45, 80, 22, 0.14);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      padding: 1.2rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.8rem;
+      color: #4a5642;
+    }
+
+    .contact-list strong {
+      display: block;
+      color: var(--green-dark);
+      margin-bottom: 0.18rem;
+    }
+
+    .map-placeholder {
+      margin-top: 1.1rem;
+      border-radius: 14px;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(45, 80, 22, 0.13);
+      background:
+        linear-gradient(90deg, rgba(45, 80, 22, 0.09) 1px, transparent 1px) 0 0 / 28px 28px,
+        linear-gradient(rgba(45, 80, 22, 0.09) 1px, transparent 1px) 0 0 / 28px 28px,
+        linear-gradient(150deg, #f0e7d9 0%, #eadfce 100%);
+    }
+
+    .map-placeholder::before,
+    .map-placeholder::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(45, 80, 22, 0.16);
+    }
+
+    .map-placeholder::before {
+      width: 170px;
+      height: 20px;
+      top: 48%;
+      left: -18px;
+      transform: rotate(-24deg);
+    }
+
+    .map-placeholder::after {
+      width: 150px;
+      height: 20px;
+      top: 20%;
+      right: -30px;
+      transform: rotate(32deg);
+    }
+
+    .map-pin {
+      position: absolute;
+      left: 56%;
+      top: 47%;
+      transform: translate(-50%, -50%);
+      width: 26px;
+      height: 26px;
+      border-radius: 50% 50% 50% 0;
+      background: var(--terracotta);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      box-shadow: 0 10px 16px rgba(196, 113, 74, 0.35);
+    }
+
+    .map-pin::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #f9efe8;
+      top: 8px;
+      left: 8px;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.35rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .field label {
+      font-weight: 600;
+      color: #33442b;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      border: 1px solid rgba(45, 80, 22, 0.25);
+      border-radius: 10px;
+      background: #fff;
+      padding: 0.75rem 0.82rem;
+      color: #223118;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .field textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 3px rgba(196, 113, 74, 0.18);
+    }
+
+    .field .error {
+      color: #8f2f2f;
+      font-size: 0.82rem;
+      min-height: 1.1em;
+    }
+
+    .field.invalid input,
+    .field.invalid select,
+    .field.invalid textarea {
+      border-color: #b24242;
+      box-shadow: 0 0 0 2px rgba(178, 66, 66, 0.14);
+    }
+
+    .field.valid input,
+    .field.valid select,
+    .field.valid textarea {
+      border-color: #4f7a39;
+    }
+
+    .form-status {
+      margin: 0.5rem 0 0;
+      font-weight: 600;
+      color: #356228;
+      min-height: 1.4em;
+    }
+
+    .site-footer {
+      background: var(--green-dark);
+      color: rgba(250, 250, 247, 0.9);
+      padding-top: 3rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(250, 250, 247, 0.18);
+    }
+
+    .footer-col h3,
+    .footer-col h4 {
+      margin: 0 0 0.7rem;
+      color: #f6f7f3;
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.2px;
+    }
+
+    .footer-col p,
+    .footer-col li,
+    .footer-col a {
+      margin: 0;
+      color: rgba(250, 250, 247, 0.82);
+      font-size: 0.94rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.42rem;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .social {
+      display: flex;
+      gap: 0.55rem;
+      margin-top: 0.7rem;
+    }
+
+    .icon-link {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(250, 250, 247, 0.34);
+      display: grid;
+      place-items: center;
+      transition: transform var(--transition), background-color var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .icon-link:hover {
+      transform: translateY(-2px);
+      background: rgba(250, 250, 247, 0.13);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.8rem;
+      padding: 1rem 0;
+      font-size: 0.88rem;
+    }
+
+    .footer-bottom a {
+      color: rgba(250, 250, 247, 0.86);
+    }
+
+    .footer-bottom a:hover {
+      color: #fff;
+    }
+
+    @keyframes floatA {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(14px) rotate(6deg); }
+    }
+
+    @keyframes floatB {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-11px); }
+    }
+
+    @keyframes floatC {
+      0%, 100% { transform: rotate(-11deg) translateY(0); }
+      50% { transform: rotate(-7deg) translateY(-13px); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.75; }
+      50% { transform: rotate(45deg) translate(5px, 5px); opacity: 1; }
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 5.5rem 0;
+      }
+
+      .nav-wrap {
+        min-height: 78px;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .nav-panel {
+        position: static;
+        opacity: 1;
+        transform: none;
+        pointer-events: all;
+        border: 0;
+        box-shadow: none;
+        background: transparent;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .nav-links a {
+        padding: 0.42rem 0.75rem;
+      }
+
+      .hero-grid {
+        gap: 1.8rem;
+      }
+
+      .shape.one {
+        width: 230px;
+        height: 230px;
+        right: 6%;
+      }
+
+      .shape.two {
+        left: 6%;
+        bottom: 20%;
+        width: 140px;
+        height: 140px;
+      }
+
+      .counters {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .slide {
+        padding: 2rem 2.4rem 3.1rem;
+        min-height: 280px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr 1.15fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .about-grid {
+        grid-template-columns: 1.05fr 0.95fr;
+        align-items: center;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <header class="site-header" id="inicio">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo" aria-label="Volver a la portada">VERDA</a>
+      <small style="position:absolute;left:1rem;bottom:6px;font-family:'Inter',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:.18em;color:var(--terracotta);text-transform:uppercase;pointer-events:none">GPT 4.1</small>
+
+      <button class="menu-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Abrir menú de navegación">
+        <span></span>
+      </button>
+
+      <nav class="nav-panel" id="nav-panel" aria-label="Navegación principal">
+        <ul class="nav-links" role="list">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary" aria-label="Ir a la sección de consulta gratis">Consulta Gratis</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shape one" aria-hidden="true"></div>
+      <div class="shape two" aria-hidden="true"></div>
+      <div class="shape three" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <p class="hero-eyebrow">Arquitectura sustentable con propósito</p>
+        <h1 id="hero-title">Diseñamos espacios que respiran futuro.</h1>
+        <p>
+          En Verda Studio creamos hogares y espacios comerciales que combinan estética,
+          eficiencia energética y bienestar. Menos impacto ambiental, más valor a largo plazo.
+        </p>
+        <div class="hero-actions" role="group" aria-label="Acciones principales">
+          <a href="#contacto" class="btn btn-primary">Consulta Gratis</a>
+          <a href="#servicios" class="btn btn-outline">Ver Proyectos</a>
+        </div>
+      </div>
+
+      <a href="#nosotros" class="scroll-indicator" aria-label="Desplazarse a la sección Sobre Nosotros">
+        <span>Deslizar</span>
+        <span class="scroll-arrow" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <section class="section about" id="nosotros" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div>
+          <h2 class="section-title" id="about-title">Diseño consciente, resultados duraderos</h2>
+          <p>
+            Somos un estudio de arquitectura sustentable enfocado en transformar ideas en
+            espacios funcionales, elegantes y responsables con el entorno.
+          </p>
+          <p>
+            Integramos materiales de bajo impacto, estrategias pasivas de climatización y
+            tecnología inteligente para reducir consumo energético sin sacrificar confort.
+          </p>
+          <p>
+            Nuestro proceso une investigación, detalle técnico y sensibilidad estética para
+            que cada proyecto responda a las necesidades reales de quienes lo habitan.
+          </p>
+
+          <div class="counters" aria-label="Indicadores de Verda Studio">
+            <article class="counter-card">
+              <div class="counter-value" data-counter="120" data-prefix="+" data-suffix="">0</div>
+              <p class="counter-label">Proyectos realizados</p>
+            </article>
+            <article class="counter-card">
+              <div class="counter-value" data-counter="15" data-prefix="" data-suffix=" años">0</div>
+              <p class="counter-label">de experiencia</p>
+            </article>
+            <article class="counter-card">
+              <div class="counter-value" data-counter="40" data-prefix="" data-suffix="%">0</div>
+              <p class="counter-label">menos huella de carbono</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="visual-wrap" aria-hidden="true">
+          <div class="building-scene">
+            <div class="tree left"></div>
+            <div class="tree right"></div>
+            <div class="building">
+              <div class="window-grid">
+                <div class="window"></div><div class="window"></div><div class="window"></div><div class="window"></div>
+                <div class="window"></div><div class="window"></div><div class="window"></div><div class="window"></div>
+                <div class="window"></div><div class="window"></div><div class="window"></div><div class="window"></div>
+              </div>
+              <div class="door"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicios" aria-labelledby="services-title">
+      <div class="container">
+        <h2 class="section-title" id="services-title">Servicios que integran diseño y sostenibilidad</h2>
+        <p class="section-subtitle">
+          Acompañamos cada etapa del proyecto con soluciones técnicas y creativas para optimizar recursos,
+          mejorar la calidad ambiental y elevar la experiencia de uso.
+        </p>
+
+        <div class="services-grid" role="list">
+          <article class="service-card" role="listitem">
+            <div class="service-icon" aria-hidden="true">⌂</div>
+            <h3>Diseño Residencial</h3>
+            <p>Viviendas bioclimáticas adaptadas a tu estilo de vida, con materiales nobles y eficiencia energética.</p>
+          </article>
+
+          <article class="service-card" role="listitem">
+            <div class="service-icon" aria-hidden="true">▣</div>
+            <h3>Arquitectura Comercial</h3>
+            <p>Espacios comerciales sostenibles que potencian la marca y reducen costos operativos.</p>
+          </article>
+
+          <article class="service-card" role="listitem">
+            <div class="service-icon" aria-hidden="true">✦</div>
+            <h3>Consultoría Sustentable</h3>
+            <p>Diagnóstico ambiental, estrategias de mejora y planes de implementación realistas y medibles.</p>
+          </article>
+
+          <article class="service-card" role="listitem">
+            <div class="service-icon" aria-hidden="true">✓</div>
+            <h3>Certificación LEED</h3>
+            <p>Asistencia integral para alcanzar estándares internacionales de construcción responsable.</p>
+          </article>
+
+          <article class="service-card" role="listitem">
+            <div class="service-icon" aria-hidden="true">❉</div>
+            <h3>Paisajismo</h3>
+            <p>Diseño de entornos verdes con especies nativas, bajo mantenimiento y alto impacto sensorial.</p>
+          </article>
+
+          <article class="service-card" role="listitem">
+            <div class="service-icon" aria-hidden="true">◫</div>
+            <h3>BIM y Tecnología</h3>
+            <p>Modelado inteligente y coordinación digital para mayor precisión, control de costos y tiempos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonials" id="testimonios" aria-labelledby="testimonials-title">
+      <div class="container">
+        <h2 class="section-title" id="testimonials-title">Clientes que eligieron construir mejor</h2>
+        <p class="section-subtitle">Historias reales de proyectos donde la sustentabilidad se tradujo en confort, ahorro y valor.</p>
+
+        <div class="slider" aria-roledescription="carousel" aria-label="Testimonios de clientes">
+          <div class="slides" id="slides">
+            <article class="slide" aria-label="Testimonio 1 de 4">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <blockquote>
+                “El equipo de Verda Studio convirtió nuestra casa en un espacio más luminoso,
+                eficiente y sereno. Bajamos notablemente el consumo energético durante el primer año.”
+              </blockquote>
+              <cite>María y Tomás R. · Vivienda unifamiliar</cite>
+            </article>
+
+            <article class="slide" aria-label="Testimonio 2 de 4">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <blockquote>
+                “Necesitábamos una oficina flexible y sostenible. La propuesta fue precisa desde el inicio,
+                y la ejecución respetó tiempos y presupuesto sin comprometer calidad.”
+              </blockquote>
+              <cite>Carla Méndez · Dirección de Operaciones</cite>
+            </article>
+
+            <article class="slide" aria-label="Testimonio 3 de 4">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <blockquote>
+                “Nos guiaron en cada decisión técnica para certificar el edificio. Su enfoque integral
+                simplificó un proceso complejo y mejoró la experiencia de todo el equipo.”
+              </blockquote>
+              <cite>Ignacio Ferreyra · Desarrollo comercial</cite>
+            </article>
+
+            <article class="slide" aria-label="Testimonio 4 de 4">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <blockquote>
+                “Valoramos la combinación entre estética y funcionalidad. El paisajismo y la ventilación natural
+                cambiaron por completo la relación entre nuestro local y sus visitantes.”
+              </blockquote>
+              <cite>Lucía Díaz · Retail gastronómico</cite>
+            </article>
+          </div>
+
+          <div class="slider-controls">
+            <button class="slider-btn" id="prevBtn" aria-label="Ver testimonio anterior">❮</button>
+            <div class="dots" id="dots" role="tablist" aria-label="Seleccionar testimonio"></div>
+            <button class="slider-btn" id="nextBtn" aria-label="Ver testimonio siguiente">❯</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 class="section-title" id="contact-title">Conversemos sobre tu próximo proyecto</h2>
+        <p class="section-subtitle">Completá el formulario y te responderemos en menos de 24 horas hábiles.</p>
+
+        <div class="contact-grid">
+          <aside class="contact-card" aria-label="Información de contacto">
+            <ul class="contact-list" role="list">
+              <li>
+                <strong>Dirección</strong>
+                Av. del Bosque 245, CABA, Argentina
+              </li>
+              <li>
+                <strong>Email</strong>
+                hola@verdastudio.com
+              </li>
+              <li>
+                <strong>Teléfono</strong>
+                +54 11 4821 9032
+              </li>
+              <li>
+                <strong>Horario</strong>
+                Lunes a Viernes · 9:00 a 18:00
+              </li>
+            </ul>
+
+            <div class="map-placeholder" aria-hidden="true">
+              <div class="map-pin"></div>
+            </div>
+          </aside>
+
+          <div class="form-card">
+            <form id="contactForm" novalidate>
+              <div class="field" data-field="nombre">
+                <label for="nombre">Nombre completo</label>
+                <input id="nombre" name="nombre" type="text" autocomplete="name" required aria-required="true" />
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <div class="field" data-field="email">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required aria-required="true" />
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <div class="field" data-field="telefono">
+                <label for="telefono">Teléfono</label>
+                <input id="telefono" name="telefono" type="tel" autocomplete="tel" required aria-required="true" />
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <div class="field" data-field="tipo">
+                <label for="tipo">Tipo de proyecto</label>
+                <select id="tipo" name="tipo" required aria-required="true">
+                  <option value="">Seleccioná una opción</option>
+                  <option value="residencial">Residencial</option>
+                  <option value="comercial">Comercial</option>
+                  <option value="remodelacion">Remodelación</option>
+                  <option value="consultoria">Consultoría sustentable</option>
+                </select>
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <div class="field" data-field="mensaje">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" required aria-required="true" placeholder="Contanos brevemente qué necesitás."></textarea>
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Enviar consulta</button>
+              <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>VERDA</h3>
+        <p>
+          Arquitectura sustentable para espacios que combinan diseño, eficiencia y bienestar.
+        </p>
+        <div class="social" aria-label="Redes sociales">
+          <a href="#" class="icon-link" aria-label="Instagram">◉</a>
+          <a href="#" class="icon-link" aria-label="LinkedIn">in</a>
+          <a href="#" class="icon-link" aria-label="Facebook">f</a>
+          <a href="#" class="icon-link" aria-label="Pinterest">⌘</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Estudio</h4>
+        <ul role="list">
+          <li><a href="#nosotros">Sobre Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul role="list">
+          <li>Diseño residencial</li>
+          <li>Arquitectura comercial</li>
+          <li>Consultoría sustentable</li>
+          <li>BIM y certificaciones</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul role="list">
+          <li>hola@verdastudio.com</li>
+          <li>+54 11 4821 9032</li>
+          <li>Av. del Bosque 245</li>
+          <li>CABA, Argentina</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© 2026 Verda Studio. Todos los derechos reservados.</span>
+      <div>
+        <a href="#" aria-label="Política de privacidad">Política de Privacidad</a>
+        ·
+        <a href="#" aria-label="Términos y condiciones">Términos</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const header = document.querySelector('.site-header');
+      const toggle = document.querySelector('.menu-toggle');
+      const navPanel = document.querySelector('#nav-panel');
+      const navLinks = navPanel ? navPanel.querySelectorAll('a') : [];
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function onScroll() {
+        if (!header) return;
+        header.classList.toggle('scrolled', window.scrollY > 14);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      if (toggle && navPanel) {
+        toggle.addEventListener('click', function () {
+          const expanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!expanded));
+          navPanel.classList.toggle('open', !expanded);
+        });
+
+        navLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            if (window.innerWidth < 768) {
+              toggle.setAttribute('aria-expanded', 'false');
+              navPanel.classList.remove('open');
+            }
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (window.innerWidth >= 768) return;
+          const target = event.target;
+          if (!navPanel.contains(target) && !toggle.contains(target)) {
+            toggle.setAttribute('aria-expanded', 'false');
+            navPanel.classList.remove('open');
+          }
+        });
+      }
+
+      const counters = document.querySelectorAll('.counter-value');
+      const aboutSection = document.querySelector('#nosotros');
+      let countersStarted = false;
+
+      function animateCounter(el, target) {
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const duration = 1600;
+        const start = performance.now();
+
+        function frame(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - progress, 3);
+          const value = Math.round(target * ease);
+          el.textContent = prefix + value + suffix;
+          if (progress < 1) {
+            requestAnimationFrame(frame);
+          }
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      function startCounters() {
+        if (countersStarted) return;
+        countersStarted = true;
+        counters.forEach((counter) => {
+          const target = Number(counter.dataset.counter || 0);
+          if (reduceMotion) {
+            counter.textContent = (counter.dataset.prefix || '') + target + (counter.dataset.suffix || '');
+          } else {
+            animateCounter(counter, target);
+          }
+        });
+      }
+
+      if (aboutSection) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                startCounters();
+                observer.disconnect();
+              }
+            });
+          },
+          { threshold: 0.3 }
+        );
+        observer.observe(aboutSection);
+      } else {
+        startCounters();
+      }
+
+      const slider = document.querySelector('.slider');
+      const slides = document.querySelector('#slides');
+      const slideItems = slides ? Array.from(slides.children) : [];
+      const prevBtn = document.querySelector('#prevBtn');
+      const nextBtn = document.querySelector('#nextBtn');
+      const dotsWrap = document.querySelector('#dots');
+      let current = 0;
+      let autoPlay = null;
+      const delay = 5000;
+
+      function updateSlider() {
+        if (!slides || slideItems.length === 0) return;
+        slides.style.transform = 'translateX(-' + current * 100 + '%)';
+        const dots = dotsWrap ? dotsWrap.querySelectorAll('.dot-btn') : [];
+        dots.forEach((dot, index) => {
+          dot.setAttribute('aria-current', String(index === current));
+          dot.setAttribute('aria-label', 'Ir al testimonio ' + (index + 1));
+        });
+      }
+
+      function goToSlide(index) {
+        if (slideItems.length === 0) return;
+        current = (index + slideItems.length) % slideItems.length;
+        updateSlider();
+      }
+
+      function nextSlide() {
+        goToSlide(current + 1);
+      }
+
+      function prevSlide() {
+        goToSlide(current - 1);
+      }
+
+      function createDots() {
+        if (!dotsWrap || slideItems.length === 0) return;
+        slideItems.forEach((_, index) => {
+          const dot = document.createElement('button');
+          dot.className = 'dot-btn';
+          dot.type = 'button';
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-current', String(index === 0));
+          dot.addEventListener('click', () => {
+            goToSlide(index);
+            restartAutoPlay();
+          });
+          dotsWrap.appendChild(dot);
+        });
+      }
+
+      function startAutoPlay() {
+        if (reduceMotion || slideItems.length < 2) return;
+        stopAutoPlay();
+        autoPlay = setInterval(nextSlide, delay);
+      }
+
+      function stopAutoPlay() {
+        if (autoPlay) {
+          clearInterval(autoPlay);
+          autoPlay = null;
+        }
+      }
+
+      function restartAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+      }
+
+      if (slides && slideItems.length) {
+        createDots();
+        updateSlider();
+        startAutoPlay();
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', () => {
+            nextSlide();
+            restartAutoPlay();
+          });
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', () => {
+            prevSlide();
+            restartAutoPlay();
+          });
+        }
+
+        if (slider) {
+          slider.addEventListener('mouseenter', stopAutoPlay);
+          slider.addEventListener('mouseleave', startAutoPlay);
+          slider.addEventListener('focusin', stopAutoPlay);
+          slider.addEventListener('focusout', startAutoPlay);
+        }
+      }
+
+      const form = document.querySelector('#contactForm');
+      const status = document.querySelector('#formStatus');
+
+      const validationRules = {
+        nombre: {
+          test: (value) => value.trim().length >= 3,
+          message: 'Ingresá tu nombre completo (mínimo 3 caracteres).'
+        },
+        email: {
+          test: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim()),
+          message: 'Ingresá un email válido.'
+        },
+        telefono: {
+          test: (value) => /^[+]?[(]?[0-9\s\-()]{8,}$/.test(value.trim()),
+          message: 'Ingresá un teléfono válido.'
+        },
+        tipo: {
+          test: (value) => value.trim() !== '',
+          message: 'Seleccioná el tipo de proyecto.'
+        },
+        mensaje: {
+          test: (value) => value.trim().length >= 12,
+          message: 'Contanos más detalles (mínimo 12 caracteres).'
+        }
+      };
+
+      function setFieldState(fieldName, valid, message) {
+        const fieldWrap = form ? form.querySelector('[data-field="' + fieldName + '"]') : null;
+        if (!fieldWrap) return;
+
+        fieldWrap.classList.remove('valid', 'invalid');
+        fieldWrap.classList.add(valid ? 'valid' : 'invalid');
+
+        const errorEl = fieldWrap.querySelector('.error');
+        if (errorEl) {
+          errorEl.textContent = valid ? '' : message;
+        }
+      }
+
+      function validateField(fieldName) {
+        if (!form) return true;
+        const input = form.elements[fieldName];
+        if (!input) return true;
+
+        const rule = validationRules[fieldName];
+        if (!rule) return true;
+
+        const value = String(input.value || '');
+        const valid = rule.test(value);
+        setFieldState(fieldName, valid, rule.message);
+        return valid;
+      }
+
+      function clearValidation() {
+        if (!form) return;
+        const wraps = form.querySelectorAll('.field');
+        wraps.forEach((wrap) => {
+          wrap.classList.remove('valid', 'invalid');
+          const err = wrap.querySelector('.error');
+          if (err) err.textContent = '';
+        });
+      }
+
+      if (form) {
+        Object.keys(validationRules).forEach((fieldName) => {
+          const input = form.elements[fieldName];
+          if (!input) return;
+          input.addEventListener('blur', () => validateField(fieldName));
+          input.addEventListener('input', () => {
+            const wrap = form.querySelector('[data-field="' + fieldName + '"]');
+            if (wrap && wrap.classList.contains('invalid')) {
+              validateField(fieldName);
+            }
+          });
+        });
+
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          let allValid = true;
+          Object.keys(validationRules).forEach((fieldName) => {
+            if (!validateField(fieldName)) {
+              allValid = false;
+            }
+          });
+
+          if (!allValid) {
+            if (status) {
+              status.style.color = '#8f2f2f';
+              status.textContent = 'Revisá los campos marcados antes de enviar.';
+            }
+            return;
+          }
+
+          if (status) {
+            status.style.color = '#2f6b2b';
+            status.textContent = '¡Gracias! Recibimos tu consulta. Te contactaremos dentro de las próximas 24 horas hábiles.';
+          }
+
+          form.reset();
+          clearValidation();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
