@@ -19,8 +19,6 @@ Trabajo Práctico N° 2 · Tecnicatura en Programación · Frontend · ITFS 29
 ## Deploy
 
 > **[→ Ver proyecto en vivo](https://pfo-2-frontend-itfs29-blush.vercel.app/)**
->
-> *(Reemplazá el link cuando hagas el deploy en Vercel)*
 
 La portada unificada contiene tres accesos:
 
